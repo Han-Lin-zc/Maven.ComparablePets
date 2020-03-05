@@ -1,5 +1,9 @@
-package io.zipcoder.pets;
+package io.zipcoder.utilities;
 
+import io.zipcoder.pets.Cat;
+import io.zipcoder.pets.Dog;
+import io.zipcoder.pets.Panda;
+import io.zipcoder.pets.Pet;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -7,23 +11,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class PetTest {
+public class ComparePetsTest {
 
     @Test
-    public void dogInheritanceTest() {
-        Pet p = new Dog("Brian Griffin");
-        Assert.assertTrue(p instanceof Pet);
-    }
-
-    @Test
-    public void catInheritanceTest() {
-        Pet p = new Cat("Hello Kitty");
-        Assert.assertTrue(p instanceof Pet);
-    }
-
-    @Test
-    public void compareToTest() {
-
+    public void compareTest() {
         Panda panda1 = new Panda("Jungkook");
         Panda panda2 = new Panda("RapMon");
         Panda panda3 = new Panda("Jin");
@@ -43,14 +34,16 @@ public class PetTest {
 
         ArrayList<Pet> expected = new ArrayList<>();
         expected.add(cat);
+        expected.add(dog2);
+        expected.add(dog1);
         expected.add(panda4);
         expected.add(panda3);
         expected.add(panda1);
         expected.add(panda2);
-        expected.add(dog2);
-        expected.add(dog1);
 
-        Collections.sort(pets);
+        ComparePets comparePets = new ComparePets();
+        Collections.sort(pets, comparePets);
+
         Assert.assertEquals(expected,pets);
     }
 }

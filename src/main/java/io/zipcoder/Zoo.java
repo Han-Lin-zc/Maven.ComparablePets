@@ -4,14 +4,19 @@ import io.zipcoder.pets.Cat;
 import io.zipcoder.pets.Dog;
 import io.zipcoder.pets.Panda;
 import io.zipcoder.pets.Pet;
+import io.zipcoder.utilities.ComparePets;
 import io.zipcoder.utilities.Console;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
 
 public class Zoo {
 
     Integer numOfPets;
     Console console = new Console(System.in,System.out);
     Pet newPet;
-    Pet[] petsStorage;
+    ArrayList<Pet> petsStorage = new ArrayList<>();
 
 
     public void numberOfPets() {
@@ -41,10 +46,12 @@ public class Zoo {
 
 
     public void placePetsInFarm() {
-        this.petsStorage = new Pet[this.numOfPets];
-        for (int i = 0; i < petsStorage.length; i++) {
+        ComparePets comparePets = new ComparePets();
+        Collections.sort(petsStorage, comparePets);
+
+        for (int i = 0; i < numOfPets; i++) {
             resultTypeOfPet();
-            petsStorage[i] = this.newPet;
+            petsStorage.add(i, this.newPet);
         }
     }
 
